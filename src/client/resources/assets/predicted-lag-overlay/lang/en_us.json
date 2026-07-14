@@ -1,0 +1,9 @@
+{
+	"key.category.predicted-lag-overlay.settings": "Predicted Lag Overlay",
+	"key.predicted-lag-overlay.settings": "Open Prediction Settings",
+	"screen.predicted-lag-overlay.lag_ghost.title": "Predicted Lag Overlay",
+	"screen.predicted-lag-overlay.lag_ghost.enabled": "Prediction Overlay",
+	"screen.predicted-lag-overlay.lag_ghost.detection": "Detection",
+	"screen.predicted-lag-overlay.lag_ghost.visuals": "Prediction and Visuals",
+	"screen.predicted-lag-overlay.lag_ghost.reset": "Reset to Defaults"
+}

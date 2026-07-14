@@ -1,0 +1,106 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+description = 'Client-side movement prediction overlay for Minecraft PvP'
+
+base {
+	archivesName = project.archives_base_name
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"predicted-lag-overlay" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+processResources {
+	inputs.property 'version', project.version
+	inputs.property 'author', project.mod_author
+
+	filesMatching('fabric.mod.json') {
+		expand version: project.version, author: project.mod_author
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.release = 25
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	from('LICENSE') {
+		rename { "${it}_${project.archives_base_name}" }
+	}
+}
+
+publishing {
+	publications {
+		create('mavenJava', MavenPublication) {
+			from components.java
+			pom {
+				name = 'Predicted Lag Overlay'
+				description = project.description
+				licenses {
+					license {
+						name = 'MIT License'
+						url = 'https://opensource.org/license/mit'
+					}
+				}
+				developers {
+					developer {
+						id = 'tenite'
+						name = project.mod_author
+					}
+				}
+			}
+		}
+	}
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = file('local.properties')
+if (localPropertiesFile.exists()) {
+	localPropertiesFile.withInputStream { localProperties.load(it) }
+}
+def deployModsDir = providers.environmentVariable('MIGURINTH_MODS_DIR')
+	.getOrElse(localProperties.getProperty('deployModsDir', ''))
+
+tasks.named('build') {
+	doLast {
+		if (!deployModsDir.isBlank()) {
+			def builtJar = tasks.named('jar').get().archiveFile.get().asFile.toPath()
+			def modsDir = file(deployModsDir).toPath()
+			java.nio.file.Files.createDirectories(modsDir)
+			java.nio.file.Files.move(
+				builtJar,
+				modsDir.resolve(builtJar.fileName),
+				java.nio.file.StandardCopyOption.REPLACE_EXISTING
+			)
+			logger.lifecycle("Moved mod to ${modsDir}")
+		}
+	}
+}

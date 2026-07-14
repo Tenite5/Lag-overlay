@@ -1,0 +1,18 @@
+{
+	"required": true,
+	"package": "pvp.client.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"ClientPacketListenerMixin",
+		"ConnectionMixin",
+		"EquipmentLayerRendererMixin",
+		"LevelRendererMixin",
+		"LivingEntityRendererMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

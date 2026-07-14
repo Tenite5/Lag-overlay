@@ -1,0 +1,25 @@
+name: build
+on: [pull_request, push]
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v6
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: '25'
+          distribution: 'microsoft'
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+      - name: Build
+        run: ./gradlew build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: predicted-lag-overlay
+          path: build/libs/

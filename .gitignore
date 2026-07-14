@@ -1,0 +1,53 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+
+# Java
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+
+# Fabric development files
+run/
+logs/
+crash-reports/
+config/
+
+# Local configuration
+local.properties
+.env
+.env.*
+!.env.example
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio Code and Eclipse
+.vscode/
+.settings/
+bin/
+.classpath
+.project
+*.launch
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local reference and test projects
+mcsrc/
+lag-tester/
+versions/
+classpath.txt
+client_classes.txt
+common_classes.txt

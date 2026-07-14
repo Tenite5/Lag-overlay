@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "predicted-lag-overlay",
+	"version": "${version}",
+	"name": "Predicted Lag Overlay",
+	"description": "Shows a visual movement prediction when a remote player stops receiving movement updates.",
+	"authors": [
+		"${author}"
+	],
+	"license": "MIT",
+	"icon": "assets/predicted-lag-overlay/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"pvp.client.client.PredictedLagOverlayClient"
+		]
+	},
+	"mixins": [
+		"predicted-lag-overlay.client.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
