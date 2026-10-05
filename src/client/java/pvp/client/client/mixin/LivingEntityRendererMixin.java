@@ -32,7 +32,7 @@ public abstract class LivingEntityRendererMixin {
 		CallbackInfoReturnable<RenderType> cir
 	) {
 		if (GhostRenderContext.active()) {
-			cir.setReturnValue(RenderTypes.entityTranslucentCullItemTarget(this.getTextureLocation(state)));
+			cir.setReturnValue(RenderTypes.entityTranslucentCull(this.getTextureLocation(state)));
 		}
 	}
 

@@ -20,7 +20,7 @@ public class EquipmentLayerRendererMixin {
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/rendertype/RenderTypes;armorCutoutNoCull(Lnet/minecraft/resources/Identifier;)Lnet/minecraft/client/renderer/rendertype/RenderType;")
 	)
 	private RenderType predictedLagOverlay$transparentGhostArmor(Identifier texture) {
-		return GhostRenderContext.active() ? RenderTypes.armorTranslucent(texture) : RenderTypes.armorCutoutNoCull(texture);
+		return GhostRenderContext.active() ? RenderTypes.entityTranslucent(texture) : RenderTypes.armorCutoutNoCull(texture);
 	}
 
 	@ModifyArg(

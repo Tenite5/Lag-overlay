@@ -1,6 +1,6 @@
 # Predicted Lag Overlay
 
-Predicted Lag Overlay is a client-side Fabric mod for Minecraft 26.2.
+Predicted Lag Overlay is a client-side Fabric mod for Minecraft 26.3.
 
 When movement updates stop, the mod continues a short visual simulation from the player's last known motion. If the prediction separates from the frozen player, a transparent copy shows where normal Minecraft movement would probably have carried them. It fades as confidence drops and rejoins the real player when updates return.
 
@@ -27,9 +27,9 @@ Press `K` to open the prediction settings. The key can be changed in Minecraft's
 
 ## Requirements
 
-- Minecraft 26.2
+- Minecraft 26.3
 - Fabric Loader 0.19.3 or newer
-- Fabric API 0.154.1+26.2
+- Fabric API 0.161.0+26.3
 - Java 25
 
 ## Building
